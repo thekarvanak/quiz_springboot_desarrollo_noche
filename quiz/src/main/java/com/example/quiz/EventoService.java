@@ -44,8 +44,12 @@ public class EventoService {
         return eventRepository.save(evento);
     }
     
-    public Persona savePerson(Persona persona) {
-    	return eventRepository.savePerson(persona);
+    public Persona savePerson(String idEvento, Persona persona) {
+    	return eventRepository.savePerson(idEvento, persona);
+    }
+    
+    public String findPersonByTrackingId(String idEvento, String trackingId) {
+    	return eventRepository.findPersonByTrackingId(idEvento, trackingId);
     }
 
     public Persona findPersonByEvent(String idEvento, String idPersona){

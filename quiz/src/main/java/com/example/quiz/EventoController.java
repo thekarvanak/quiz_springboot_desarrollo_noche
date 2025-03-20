@@ -32,7 +32,7 @@ public class EventoController {
 			@RequestBody Persona persona,
 			@PathVariable String id,
 			@RequestHeader("X-Tracking-Id") String trackId) {
-		Persona existingPersona = eventoService.findPersonByTrackingId(trackId);
+		String existingPersona = eventoService.findPersonByTrackingId(id, trackId);
 		if(existingPersona != null) {
 			Persona newPersona = eventoService.savePerson(id, persona);
 			return new ResponseEntity<>(newPersona, HttpStatus.CREATED);
@@ -52,6 +52,7 @@ public class EventoController {
 		if(evento != null) {
 			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 			/*
+//			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 			Persona existingPersona = eventoService.findPersonByEvent(eventoId, personaId);
 			if(existingPersona != null) {
 				eventoService.deletePersonByEvent(eventoId, personaId);
