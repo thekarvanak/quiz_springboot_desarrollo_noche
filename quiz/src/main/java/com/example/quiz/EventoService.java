@@ -48,6 +48,10 @@ public class EventoService {
         return eventRepository.findPersonByEvent(idEvento, idPersona);
     }
 
+    public void deletePersonByEvent(){
+        eventRepository.deletePersonByEvent();
+    }
+
     public Evento findByAuthToken(String authToken){
         return eventRepository.findByAuthToken(authToken);
     }
