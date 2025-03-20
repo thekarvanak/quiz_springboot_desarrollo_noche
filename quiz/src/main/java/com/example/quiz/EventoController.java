@@ -2,6 +2,7 @@ package com.example.quiz;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -72,4 +73,11 @@ public class EventoController {
 		List<Evento> eventos = (List<Evento>) eventoService.searchByFilters(fecha);
 		return new ResponseEntity<>(eventos, HttpStatus.OK);
 	}
+
+	@GetMapping("/track")
+	public ResponseEntity<Map<String, String>> getTrack() {
+		Map<String, String> track = eventoService.getTrack();
+		return new ResponseEntity<>(track, HttpStatus.OK);
+	}
+	
 }

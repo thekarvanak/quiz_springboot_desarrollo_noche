@@ -22,6 +22,10 @@ public class EventoRepository {
 	private final Map<String, Evento> baseDeDatos = new HashMap<>();
 	private final Map<String, String> authTokens = new HashMap<>();
 	private final Map<String, String> tracking = new HashMap<>();
+	
+	public Map<String, String> getTrack() {
+		return tracking;
+	}
 
 	public Evento save(Evento evento) {
 		baseDeDatos.put(evento.getId(), evento);
@@ -31,7 +35,7 @@ public class EventoRepository {
 
 	public Persona savePerson(String idEvento, Persona persona) {
 		baseDeDatos.get(idEvento).getInvitados().add(persona);
-		tracking.put("track-"+persona.getId(), persona.getId());
+		tracking.put("track-"+baseDeDatos.get(idEvento).getId(), baseDeDatos.get(idEvento).getId());
 		return persona;
 	}
 
@@ -70,10 +74,10 @@ public class EventoRepository {
 		}
 	}
 
-	public String findPersonByTrackingId (String idEvento, String idPersona) {
+	public String findPersonByTrackingId (String idEvento, String trackId) {
 		Evento evento = baseDeDatos.get(idEvento);
 		if (evento != null) {
-			return tracking.get("track-"+ idPersona);
+			return tracking.get("track-"+ trackId);
 		}
 		return null;
 	}
