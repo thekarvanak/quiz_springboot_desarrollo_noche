@@ -44,7 +44,15 @@ public class EventoService {
         return eventRepository.save(evento);
     }
 
-    public Evento findPersonByEvent(String idEvento, String idPersona){
+    public Persona findPersonByEvent(String idEvento, String idPersona){
         return eventRepository.findPersonByEvent(idEvento, idPersona);
+    }
+
+    public Evento findByAuthToken(String authToken){
+        return eventRepository.findByAuthToken(authToken);
+    }
+
+    public Evento searchByFilters(LocalDate fecha){
+        return eventRepository.searchByFilter();
     }
 }
