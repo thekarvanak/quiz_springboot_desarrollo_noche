@@ -5,6 +5,7 @@
 package com.example.quiz;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Repository;
 
@@ -29,5 +30,16 @@ public class EventoRepository {
         return evento;
     }
     
-    
+    public Persona findPersonByEvent(String idEvento, String idPersona) {
+        Evento evento = baseDeDatos.get(idEvento); 
+        List<Persona> invitados = evento.getInvitados();
+        
+        for (int i=0; i<invitados.size(); i++){
+            if (invitados.get(i).getId() == idPersona){
+                return invitados.get(i);
+            }
+        }
+            
+        return null;
+    }
 }

@@ -19,4 +19,13 @@ public class Evento {
 		invitados = new ArrayList<>();
 		this.id = UUID.randomUUID().toString();
 	}
+        
+        public String getId(){
+            return id;
+        }
+        
+        public List<Persona> getInvitados(){
+        return invitados;
+        }
+                
 }
