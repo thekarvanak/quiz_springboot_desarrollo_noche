@@ -43,6 +43,10 @@ public class EventoService {
     public Evento save(Evento evento) {
         return eventRepository.save(evento);
     }
+    
+    public Persona savePerson(Persona persona) {
+    	return eventRepository.savePerson(persona);
+    }
 
     public Persona findPersonByEvent(String idEvento, String idPersona){
         return eventRepository.findPersonByEvent(idEvento, idPersona);
