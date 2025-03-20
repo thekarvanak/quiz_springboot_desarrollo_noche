@@ -3,6 +3,7 @@ package com.example.quiz;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,16 @@ public class EventoService {
 
         save(evento1);
         save(evento2);
+        for(int i = 0; i < evento1.getInvitados().size(); i++) {
+        	savePerson(evento1.getId(), evento1.getInvitados().get(i));
+        }
+        for(int i = 0; i < evento2.getInvitados().size(); i++) {
+        	savePerson(evento2.getId(), evento2.getInvitados().get(i));
+        }
+    }
+    
+    public Map<String, String> getTrack() {
+    	return eventRepository.getTrack();
     }
 
     public Evento save(Evento evento) {
