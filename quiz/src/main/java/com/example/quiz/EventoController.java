@@ -39,6 +39,7 @@ public class EventoController {
 			@RequestHeader("Authorization") String authToken,
 			@PathVariable String eventoId,
 			@PathVariable String personaId) {
+		System.out.println("prueba");
 		Evento evento = eventoService.findByAuthToken(authToken);
 		if(evento != null) {
 			Persona existingPersona = eventoService.findPersonByEvent(eventoId, personaId);
