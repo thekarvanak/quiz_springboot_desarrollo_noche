@@ -18,18 +18,19 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class EventoRepository {
     
-    // Simulamos una base de datos con un Map
+   
     private final Map<String, Evento> baseDeDatos = new HashMap<>();
-    
-    // Simulamos almacén de tokens de autorización
     private final Map<String, String> authTokens = new HashMap<>();
-    
-     // Guardar un evento
+    private final Map<String, String> tracking = new HashMap<>();
+     
     public Evento save(Evento evento) {
         baseDeDatos.put(evento.getId(), evento);
-        // Inicializamos estructuras relacionadas
-        authTokens.put("token-" + evento.getId(), evento.getId());
         return evento;
+    }
+    
+    public Persona savePerson(String idEvento, Persona persona) {
+        baseDeDatos.get(idEvento).getInvitados().add(persona);
+        return persona;
     }
     
     public Persona findPersonByEvent(String idEvento, String idPersona) {
@@ -41,7 +42,6 @@ public class EventoRepository {
                 return invitados.get(i);
             }
         }
-            
         return null;
     }
     
@@ -67,6 +67,8 @@ public class EventoRepository {
             baseDeDatos.get(idEvento).getInvitados().remove(persona);
         }
     }
+    
+    
         
         
 }
