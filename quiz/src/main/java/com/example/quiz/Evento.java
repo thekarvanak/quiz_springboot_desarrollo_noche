@@ -14,9 +14,10 @@ public class Evento {
 		this.id = UUID.randomUUID().toString();
 	}
 	
-	public Evento(LocalDate fecha) {
+	public Evento(LocalDate fecha, List<Persona> personas) {
 		this.fecha = fecha;
 		invitados = new ArrayList<>();
 		this.id = UUID.randomUUID().toString();
+		this.invitados = personas;
 	}
 }
