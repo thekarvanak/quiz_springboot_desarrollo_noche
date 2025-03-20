@@ -1,5 +1,6 @@
 package com.example.quiz;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +58,8 @@ public class EventoController {
 	// parámetros de Query String
 	@GetMapping
 	public ResponseEntity<List<Evento>> buscarEventos(
-			@RequestParam(required = false) String fecha) {
-		List<Evento> eventos = eventoService.searchByFilters(fecha);
+			@RequestParam(required = false) LocalDate fecha) {
+		List<Evento> eventos = (List<Evento>) eventoService.searchByFilters(fecha);
 		return new ResponseEntity<>(eventos, HttpStatus.OK);
 	}
 }
