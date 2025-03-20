@@ -20,4 +20,16 @@ public class Evento {
 		this.id = UUID.randomUUID().toString();
 		this.invitados = personas;
 	}
+        
+        public String getId(){
+            return id;
+        }
+        
+        public List<Persona> getInvitados(){
+            return invitados;
+        }
+                
+        public LocalDate getFecha(){
+            return fecha;
+        }
 }
