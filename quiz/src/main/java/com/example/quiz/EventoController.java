@@ -28,28 +28,37 @@ public class EventoController {
 	
 	// Crear un nuevo evento
 	@PostMapping("/{id}/inscribir")
-	public ResponseEntity<Evento> createEvento(@RequestBody Evento evento) {
-		Evento newEvento = eventoService.save(evento);
-		return new ResponseEntity<>(newEvento, HttpStatus.CREATED);
+	public ResponseEntity<Persona> createEvento(
+			@RequestBody Persona persona,
+			@PathVariable String id,
+			@RequestHeader("X-Tracking-Id") String trackId) {
+		Persona existingPersona = eventoService.findPersonByTrackingId(trackId);
+		if(existingPersona != null) {
+			Persona newPersona = eventoService.savePerson(id, persona);
+			return new ResponseEntity<>(newPersona, HttpStatus.CREATED);
+		} else {
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 	
 	
 	// Eliminar api/evento/{id}/inscripcion/{personaId}
-	@DeleteMapping("/{id}/inscripcion{personaId}")
+	@DeleteMapping("/{eventoId}/inscripcion/{personaId}")
 	public ResponseEntity<Void> deletePersonaInEvento(
-			@RequestHeader("Authorization") String authToken,
 			@PathVariable String eventoId,
-			@PathVariable String personaId) {
-		System.out.println("prueba");
+			@PathVariable String personaId,
+			@RequestHeader("Authorization") String authToken) {
 		Evento evento = eventoService.findByAuthToken(authToken);
 		if(evento != null) {
+			return new ResponseEntity<>(HttpStatus.ACCEPTED);
+			/*
 			Persona existingPersona = eventoService.findPersonByEvent(eventoId, personaId);
 			if(existingPersona != null) {
 				eventoService.deletePersonByEvent(eventoId, personaId);
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
+			}*/
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
