@@ -50,4 +50,12 @@ public class EventoRepository {
                 .filter(u -> fecha == null || u.getFecha().equals(fecha))
                 .collect(Collectors.toList());
     }
+    
+    public Evento findByAuthToken(String authToken) {
+        String eventId = authTokens.get(authToken);
+        if (eventId != null) {
+            return baseDeDatos.get(eventId);
+        }
+        return null;
+    }
 }
