@@ -41,7 +41,7 @@ public class EventoController {
 			@PathVariable String personaId) {
 		Evento evento = eventoService.findByAuthToken(authToken);
 		if(evento != null) {
-			Evento existingEvento = eventoService.findPersonByEvent(eventoId, personaId);
+			Persona existingEvento = eventoService.findPersonByEvent(eventoId, personaId);
 			if(existingEvento != null) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			} else {

@@ -48,15 +48,15 @@ public class EventoService {
         return eventRepository.findPersonByEvent(idEvento, idPersona);
     }
 
-    public void deletePersonByEvent(){
-        eventRepository.deletePersonByEvent();
+    public void deletePersonByEvent(String idEvento, String idPersona){
+        eventRepository.deletePersonByEvent(idEvento, idPersona);
     }
 
     public Evento findByAuthToken(String authToken){
         return eventRepository.findByAuthToken(authToken);
     }
 
-    public Evento searchByFilters(LocalDate fecha){
-        return eventRepository.searchByFilter();
+    public List<Evento> searchByFilters(LocalDate fecha){
+        return eventRepository.searchByFilters(fecha);
     }
 }
