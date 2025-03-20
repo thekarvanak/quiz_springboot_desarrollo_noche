@@ -51,16 +51,13 @@ public class EventoController {
 			@RequestHeader("Authorization") String authToken) {
 		Evento evento = eventoService.findByAuthToken(authToken);
 		if(evento != null) {
-			return new ResponseEntity<>(HttpStatus.ACCEPTED);
-			/*
-//			return new ResponseEntity<>(HttpStatus.ACCEPTED);
 			Persona existingPersona = eventoService.findPersonByEvent(eventoId, personaId);
 			if(existingPersona != null) {
 				eventoService.deletePersonByEvent(eventoId, personaId);
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}*/
+			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}

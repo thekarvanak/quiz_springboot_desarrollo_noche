@@ -35,7 +35,9 @@ public class EventoRepository {
 
 	public Persona savePerson(String idEvento, Persona persona) {
 		baseDeDatos.get(idEvento).getInvitados().add(persona);
-		tracking.put("track-"+baseDeDatos.get(idEvento).getId(), baseDeDatos.get(idEvento).getId());
+		tracking.put("track-"+baseDeDatos.get(idEvento).getId()+ "-" + 
+		persona.getId(), baseDeDatos.get(idEvento).getId() + "-" + 
+		persona.getId());
 		return persona;
 	}
 
@@ -44,7 +46,7 @@ public class EventoRepository {
 		List<Persona> invitados = evento.getInvitados();
 
 		for (int i=0; i<invitados.size(); i++){
-			if (invitados.get(i).getId() == idPersona){
+			if (invitados.get(i).getId().equals(idPersona)){
 				return invitados.get(i);
 			}
 		}
@@ -77,7 +79,7 @@ public class EventoRepository {
 	public String findPersonByTrackingId (String idEvento, String trackId) {
 		Evento evento = baseDeDatos.get(idEvento);
 		if (evento != null) {
-			return tracking.get("track-"+ trackId);
+			return tracking.get("track-" + idEvento + "-" + trackId);
 		}
 		return null;
 	}

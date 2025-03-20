@@ -14,11 +14,11 @@ public class Evento {
 		this.id = UUID.randomUUID().toString();
 	}
 	
-	public Evento(LocalDate fecha, List<Persona> personas) {
+	public Evento(LocalDate fecha) {
 		this.fecha = fecha;
 		invitados = new ArrayList<>();
 		this.id = UUID.randomUUID().toString();
-		this.invitados = personas;
+		this.invitados = new ArrayList<>();
 	}
         
         public String getId(){
