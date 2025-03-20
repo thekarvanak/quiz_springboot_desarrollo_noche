@@ -58,4 +58,15 @@ public class EventoRepository {
         }
         return null;
     }
+    
+    public void deletePersonByEvent(String idEvento, String idPersona) {
+        
+        Persona persona = findPersonByEvent(idEvento,idPersona);
+        
+        if(persona != null){
+            baseDeDatos.get(idEvento).getInvitados().remove(persona);
+        }
+    }
+        
+        
 }
