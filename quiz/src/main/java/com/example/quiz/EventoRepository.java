@@ -4,9 +4,11 @@
  */
 package com.example.quiz;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -41,5 +43,11 @@ public class EventoRepository {
         }
             
         return null;
+    }
+    
+    public List<Evento> searchByFilters(LocalDate fecha) {
+        return baseDeDatos.values().stream()
+                .filter(u -> fecha == null || u.getFecha().equals(fecha))
+                .collect(Collectors.toList());
     }
 }

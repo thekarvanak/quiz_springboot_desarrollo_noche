@@ -25,7 +25,10 @@ public class Evento {
         }
         
         public List<Persona> getInvitados(){
-        return invitados;
+            return invitados;
         }
                 
+        public LocalDate getFecha(){
+            return fecha;
+        }
 }
